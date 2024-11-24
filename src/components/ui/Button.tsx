@@ -15,5 +15,6 @@ export default function Button({ children }: IButtonProps) {
     transition-colors
     duration-300
     ease-in-out
+    gap-2
   ">{children}</button>;
 }

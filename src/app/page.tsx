@@ -3,7 +3,12 @@ import Button from '@/components/ui/Button';
 export default function Home() {
   return (
     <div>
-      <Button>你好，世界</Button>
+      <div className="flex gap-2">
+        <Button>导出</Button>
+        <Button>导入</Button>
+        <Button>训练</Button>
+        <Button>新增</Button>
+      </div>
     </div>
   );
 }
