@@ -1,8 +1,9 @@
+import Button from '@/components/ui/Button';
 
 export default function Home() {
   return (
     <div>
-      记录
+      <Button>你好，世界</Button>
     </div>
   );
 }
