@@ -12,8 +12,11 @@ interface IOrange {
 }
 
 export
+const orangeKeyPrefix = '$orange-';
+
+export
 function orangeKey(id: string) {
-  return `$orange-${id}`;
+  return `${orangeKeyPrefix}${id}`;
 }
 
 export
@@ -41,6 +44,12 @@ async function updateOrange(id: string, orange: Partial<IOrange>): Promise<IOran
 }
 
 export
-function queryAllOranges(keyword: string) {
-
+async function getAllOranges() {
+  const result: IOrange[] = [];
+  await localForage.iterate((value, key) => {
+    if (key.startsWith(orangeKeyPrefix)) {
+      result.push(value as IOrange);
+    }
+  });
+  return result
 }
