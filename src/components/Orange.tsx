@@ -27,7 +27,7 @@ export default function Orange(props: {
   };
 
   const handleDoubleClick = () => {
-    router.push(`/phrase`);
+    router.push(`/phrase/1234`);
   };
 
   return (
