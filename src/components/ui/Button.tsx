@@ -4,7 +4,7 @@ interface IButtonProps {
   children?: ReactNode;
 }
 
-export default function Button({ children }: IButtonProps) {
+export default function Button({ children, ...props }: IButtonProps) {
   return <button className="
     bg-blue-500
     text-white
@@ -16,5 +16,5 @@ export default function Button({ children }: IButtonProps) {
     duration-300
     ease-in-out
     gap-2
-  ">{children}</button>;
+  " { ...props }>{children}</button>;
 }

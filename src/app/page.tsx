@@ -1,13 +1,20 @@
+'use client';
+
 import Orange from '@/components/Orange';
 import Button from '@/components/ui/Button';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div>
       <div className="flex gap-2">
         <Button>导出</Button>
         <Button>导入</Button>
-        <Button>训练</Button>
+        <button onClick={() => {
+          router.push(`/train`);
+        }}>训练</button>
         <Button>新增</Button>
       </div>
       <div>
