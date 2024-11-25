@@ -1,6 +1,7 @@
 'use client';
 
 import useSpeaker from '@/hooks/useSpeaker';
+import { useRef } from 'react';
 
 interface IOrange {
   id: string;
@@ -17,11 +18,30 @@ export default function Orange(props: {
   orange: IOrange,
 }) {
   const [phrase, speak] = useSpeaker();
+  const timer = useRef<any>(null);
+
+  const handleClick = () => {
+    speak(props.orange.phrase);
+  };
+
+  const handleDoubleClick = () => {
+    alert(1234);
+  };
 
   return (
     <div
       className={`w-full min-h-8 px-2 py-2 border-t transition-colors duration-300 ${phrase === props.orange.phrase ? 'bg-blue-500' : ''}`}
-      onClick={() => speak(props.orange.phrase)}>
+      onClick={() => {
+        if (timer.current) {
+          clearTimeout(timer.current);
+          timer.current = null;
+          handleDoubleClick();
+        } else {
+          timer.current = setTimeout(() => {
+            handleClick();
+          }, 300);
+        }
+      }}>
       <div className="flex justify-between items-center ">
         <span className="text-2xl font-bold leading-7">{props.index}.</span>
         <span>
