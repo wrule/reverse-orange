@@ -2,6 +2,7 @@
 
 import useSpeaker from '@/hooks/useSpeaker';
 import { useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface IOrange {
   id: string;
@@ -17,6 +18,7 @@ export default function Orange(props: {
   index: number | string,
   orange: IOrange,
 }) {
+  const router = useRouter();
   const [phrase, speak] = useSpeaker();
   const timer = useRef<any>(null);
 
@@ -25,7 +27,7 @@ export default function Orange(props: {
   };
 
   const handleDoubleClick = () => {
-    alert(1234);
+    router.push(`/phrase`);
   };
 
   return (
