@@ -5,9 +5,9 @@ const useSpeaker = () => {
   const [phrase, setPhrase] = useAtom(currentPhrase);
 
   const speak = (newPhrase: string) => {
-    if (newPhrase) {
-      try {
-        window.speechSynthesis.cancel();
+    try {
+      window.speechSynthesis.cancel();
+      if (newPhrase) {
         const speech = new SpeechSynthesisUtterance(newPhrase);
         speech.lang = 'en-US';
         speech.volume = 1;
@@ -16,11 +16,11 @@ const useSpeaker = () => {
         speech.onend = () => setPhrase('');
         setPhrase(newPhrase);
         window.speechSynthesis.speak(speech);
-      } catch (error) {
-        console.error(error);
+      } else {
+        setPhrase('');
       }
-    } else {
-      setPhrase('');
+    } catch (error) {
+      console.error(error);
     }
   };
 
