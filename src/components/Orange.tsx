@@ -1,5 +1,7 @@
 'use client';
 
+import { useCallback } from "react";
+
 interface IOrange {
   id: string;
   phrase: string;
@@ -14,16 +16,21 @@ export default function Orange(props: {
   index: number | string,
   orange: IOrange,
 }) {
+
+  const handleSpeak = useCallback((phrase: string) => {
+    window.speechSynthesis.cancel();
+    const speech = new SpeechSynthesisUtterance(phrase);
+    speech.lang = 'en-US';
+    speech.volume = 1;
+    speech.rate = 0.8;
+    speech.pitch = 1;
+    window.speechSynthesis.speak(speech);
+  }, []);
+
   return (
-    <div className="w-full min-h-8 px-2 py-2 border-t" onClick={() => {
-      const speech = new SpeechSynthesisUtterance();
-      speech.text = "Orange is my cat, is not a fruit, it's my cat's name. Haha that's nice";
-      speech.lang = 'en-US';
-      speech.volume = 1;
-      speech.rate = 0.8;
-      speech.pitch = 1;
-      window.speechSynthesis.speak(speech);
-    }}>
+    <div
+      className="w-full min-h-8 px-2 py-2 border-t"
+      onClick={() => handleSpeak(props.orange.phrase)}>
       <div className="flex justify-between items-center ">
         <span className="text-2xl font-bold">{props.index}.</span>
         <span>
