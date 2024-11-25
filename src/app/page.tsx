@@ -15,7 +15,11 @@ export default function Home() {
         <button onClick={() => {
           router.push(`/train`);
         }}>训练</button>
-        <Button>新增</Button>
+        <button onClick={() => {
+          router.push(`/phrase/add`);
+        }}>
+          新增
+        </button>
       </div>
       <div>
         <ul>
