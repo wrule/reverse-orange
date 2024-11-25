@@ -25,8 +25,19 @@ function getOrange(id: string) {
 }
 
 export
-function addOrange(id: string, orange: IOrange) {
-  return localForage.setItem<IOrange>(orangeKey(id), orange);
+function addOrange(id: string, orange: {
+  phrase: string,
+  translation: string,
+}) {
+  return localForage.setItem<IOrange>(orangeKey(id), {
+    id: '',
+    phrase: orange.phrase,
+    translation: orange.translation,
+    correctCount: 0,
+    incorrectCount: 0,
+    createTime: Date.now(),
+    lastTrainingTime: 0,
+  });
 }
 
 export
