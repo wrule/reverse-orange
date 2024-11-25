@@ -13,11 +13,6 @@ const useSpeaker = () => {
         speech.volume = 1;
         speech.rate = 0.8;
         speech.pitch = 1;
-        speech.onend = () => {
-          if (phrase === newPhrase) {
-            setPhrase('');
-          }
-        };
         setPhrase(newPhrase);
         window.speechSynthesis.speak(speech);
       } else {
