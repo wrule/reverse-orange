@@ -1,10 +1,11 @@
 import { useAtom } from 'jotai';
 import { currentPhrase } from '@/stores/speaker';
+import { useCallback } from 'react';
 
 const useSpeaker = () => {
   const [phrase, setPhrase] = useAtom(currentPhrase);
 
-  const speak = (newPhrase: string) => {
+  const speak = useCallback((newPhrase: string) => {
     try {
       window.speechSynthesis.cancel();
       if (newPhrase) {
@@ -21,7 +22,7 @@ const useSpeaker = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [setPhrase]);
 
   return [phrase, speak] as [string, (newPhrase: string) => void];
 };
