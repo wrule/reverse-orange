@@ -13,7 +13,15 @@ export default function Home() {
       <div>
         <ul>
           {Array(1000).fill(0).map((_, index) => <li key={`orange-${index}`}>
-            <Orange index="3" />
+            <Orange index={index + 1} orange={{
+              id: '123',
+              phrase: 'Fuck my pussy',
+              translation: '这是一个脏话',
+              correctCount: 3,
+              incorrectCount: 3,
+              createTime: 0,
+              lastTrainingTime: 0,
+            }} />
           </li>)}
         </ul>
       </div>
