@@ -30,7 +30,11 @@ export default function Orange(props: {
   return (
     <div
       className="w-full min-h-8 px-2 py-2 border-t"
-      onClick={() => handleSpeak(props.orange.phrase)}>
+      onClick={() => handleSpeak(props.orange.phrase)}
+      onDoubleClick={(event) => {
+        alert(1);
+        event.stopPropagation();
+      }}>
       <div className="flex justify-between items-center ">
         <span className="text-2xl font-bold">{props.index}.</span>
         <span>
