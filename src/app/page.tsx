@@ -12,7 +12,7 @@ export default function Home() {
       </div>
       <div>
         <ul>
-          {Array(100).fill(0).map((_, index) => <li key={`orange-${index}`}>
+          {Array(1000).fill(0).map((_, index) => <li key={`orange-${index}`}>
             <Orange index="3" />
           </li>)}
         </ul>
