@@ -15,7 +15,7 @@ export default function Home() {
           {Array(1000).fill(0).map((_, index) => <li key={`orange-${index}`}>
             <Orange index={index + 1} orange={{
               id: '123',
-              phrase: 'Fuck my pussy',
+              phrase: `${index + 1} Fuck my pussy`,
               translation: '这是一个脏话',
               correctCount: 3,
               incorrectCount: 3,

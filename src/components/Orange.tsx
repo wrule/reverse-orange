@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from "react";
+import useSpeaker from '@/hooks/useSpeaker';
 
 interface IOrange {
   id: string;
@@ -16,38 +16,12 @@ export default function Orange(props: {
   index: number | string,
   orange: IOrange,
 }) {
-  const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
-
-  const handleSpeak = useCallback((phrase: string) => {
-    window.speechSynthesis.cancel();
-    try {
-      const speech = new SpeechSynthesisUtterance(phrase);
-      speech.lang = 'en-US';
-      speech.volume = 1;
-      speech.rate = 0.8;
-      speech.pitch = 1;
-      speech.onstart = () => {
-        setIsSpeaking(true);
-      };
-      speech.onend = () => {
-        setIsSpeaking(false);
-      };
-      speech.onpause = () => {
-        setIsSpeaking(false);
-      };
-      speech.onerror = () => {
-        setIsSpeaking(false);
-      };
-      window.speechSynthesis.speak(speech);
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
+  const [phrase, speak] = useSpeaker();
 
   return (
     <div
-      className={`w-full min-h-8 px-2 py-2 border-t ${isSpeaking ? 'bg-blue-600' : ''}`}
-      onClick={() => handleSpeak(props.orange.phrase)}
+      className={`w-full min-h-8 px-2 py-2 border-t ${phrase === props.orange.phrase ? 'bg-blue-500' : ''}`}
+      onClick={() => speak(props.orange.phrase)}
       onDoubleClick={(event) => {
         alert(1);
         event.stopPropagation();
