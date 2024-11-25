@@ -39,7 +39,7 @@ export default function Orange(props: {
         } else {
           timer.current = setTimeout(() => {
             handleClick();
-          }, 300);
+          }, 250);
         }
       }}>
       <div className="flex justify-between items-center ">
