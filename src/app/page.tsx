@@ -12,9 +12,9 @@ export default function Home() {
       </div>
       <div>
         <ul>
-          <li>
-            <Orange />
-          </li>
+          {Array(100).fill(0).map((_, index) => <li key={`orange-${index}`}>
+            <Orange index="2" />
+          </li>)}
         </ul>
       </div>
     </div>
