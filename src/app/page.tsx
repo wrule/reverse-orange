@@ -1,3 +1,4 @@
+import Orange from '@/components/Orange';
 import Button from '@/components/ui/Button';
 
 export default function Home() {
@@ -8,6 +9,13 @@ export default function Home() {
         <Button>导入</Button>
         <Button>训练</Button>
         <Button>新增</Button>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <Orange />
+          </li>
+        </ul>
       </div>
     </div>
   );
