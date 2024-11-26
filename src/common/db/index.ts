@@ -11,7 +11,6 @@ interface IOrange {
   lastTrainingTime?: number;
 }
 
-
 export
 const orangeKeyPrefix = '$orange-';
 
