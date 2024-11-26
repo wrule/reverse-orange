@@ -76,5 +76,5 @@ async function getAllOranges() {
       result.push(value as IOrange);
     }
   });
-  return result
+  return result;
 }
