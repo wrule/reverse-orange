@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getOrange, IOrange } from '@/common/db';
+import { addOrange, getAllOranges, getOrange, IOrange, updateOrange } from '@/common/db';
 import { useParams } from 'next/navigation';
 
 export default function Phrase() {
@@ -12,6 +12,23 @@ export default function Phrase() {
     const orange = await getOrange(Number(id));
     if (orange) {
       setOrange(orange);
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      if (id === 'add') {
+        await addOrange(orange);
+      } else {
+        await updateOrange(Number(id), {
+          phrase: orange.phrase,
+          translation: orange.translation,
+        });
+      }
+      const list = await getAllOranges();
+      console.log(list);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -39,7 +56,7 @@ export default function Phrase() {
           className="text-xl w-full h-full resize-none outline-none p-4 bg-transparent"
         />
       </div>
-      <div className="h-[3.3rem] bg-blue-700 text-white text-xl flex items-center justify-center cursor-pointer">Save</div>
+      <div onClick={() => handleSave()} className="h-[3.3rem] bg-blue-700 text-white text-xl flex items-center justify-center cursor-pointer">Save</div>
     </div>
   );
 }
