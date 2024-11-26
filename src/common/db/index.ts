@@ -2,14 +2,15 @@ import localForage from 'localforage';
 
 export
 interface IOrange {
-  id: string;
+  id: number;
   phrase: string;
   translation: string;
   correctCount: number;
   incorrectCount: number;
   createTime: number;
-  lastTrainingTime: number;
+  lastTrainingTime?: number;
 }
+
 
 export
 const orangeKeyPrefix = '$orange-';
@@ -22,33 +23,33 @@ async function nextOrangeId() {
 }
 
 export
-function orangeKey(id: string) {
+function orangeKey(id: number) {
   return `${orangeKeyPrefix}${id}`;
 }
 
 export
-function getOrange(id: string) {
+function getOrange(id: number) {
   return localForage.getItem<IOrange>(orangeKey(id));
 }
 
 export
-function addOrange(id: string, orange: {
+async function addOrange(orange: {
   phrase: string,
   translation: string,
 }) {
+  const id = await nextOrangeId();
   return localForage.setItem<IOrange>(orangeKey(id), {
-    id: '',
+    id,
     phrase: orange.phrase,
     translation: orange.translation,
     correctCount: 0,
     incorrectCount: 0,
     createTime: Date.now(),
-    lastTrainingTime: 0,
   });
 }
 
 export
-function removeOrange(id: string) {
+function removeOrange(id: number) {
   return localForage.removeItem(orangeKey(id));
 }
 
