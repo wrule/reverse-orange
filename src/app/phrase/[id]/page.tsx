@@ -1,11 +1,27 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getOrange } from '@/common/db';
+import { getOrange, IOrange } from '@/common/db';
+import { useParams } from 'next/navigation';
 
 export default function Phrase() {
-  const [phrase, setPhrase] = useState<string>('1234');
-  const [translation, setTranslation] = useState<string>('5678');
+  const { id } = useParams();
+  const [phrase, setPhrase] = useState<string>('');
+  const [translation, setTranslation] = useState<string>('');
+  const [orange, setOrange] = useState<IOrange>();
+
+  const fetchOrange = async () => {
+    const orange = await getOrange(Number(id));
+    if (orange) {
+      setOrange(orange);
+    }
+  };
+
+  useEffect(() => {
+    if (id !== 'add') {
+      fetchOrange();
+    }
+  }, []);
 
   return (
     <div className="h-[100dvh] flex flex-col">
