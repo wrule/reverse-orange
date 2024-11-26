@@ -76,5 +76,6 @@ async function getAllOranges() {
       result.push(value as IOrange);
     }
   });
+  result.sort((a, b) => b.id - a.id);
   return result;
 }
