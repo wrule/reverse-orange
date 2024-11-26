@@ -15,6 +15,13 @@ export
 const orangeKeyPrefix = '$orange-';
 
 export
+async function nextOrangeId() {
+  const key = '#orange-next-id';
+  const nextId = ((await localForage.getItem<number>(key)) ?? 0) + 1;
+  return await localForage.setItem(key, nextId);
+}
+
+export
 function orangeKey(id: string) {
   return `${orangeKeyPrefix}${id}`;
 }
