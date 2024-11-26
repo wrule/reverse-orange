@@ -1,11 +1,22 @@
 'use client';
 
+import { getAllOranges, IOrange } from '@/common/db';
 import Orange from '@/components/Orange';
 import Button from '@/components/ui/Button';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const router = useRouter();
+  const [oranges, setOranges] = useState<IOrange[]>([]);
+
+  const fetchAllOranges = async () => {
+    setOranges(await getAllOranges());
+  }
+
+  useEffect(() => {
+    fetchAllOranges();
+  }, []);
 
   return (
     <div>
@@ -23,16 +34,8 @@ export default function Home() {
       </div>
       <div>
         <ul>
-          {Array(1000).fill(0).map((_, index) => <li key={`orange-${index}`}>
-            <Orange index={index + 1} orange={{
-              id: '123',
-              phrase: `${index + 1} Hello i'am a chinese front-end developer`,
-              translation: '这是一个脏话',
-              correctCount: 3,
-              incorrectCount: 3,
-              createTime: 0,
-              lastTrainingTime: 0,
-            }} />
+          {oranges.map((orange, index) => <li key={`orange-${index}`}>
+            <Orange orange={orange} />
           </li>)}
         </ul>
       </div>

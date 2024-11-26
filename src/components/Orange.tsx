@@ -3,19 +3,9 @@
 import useSpeaker from '@/hooks/useSpeaker';
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
-
-interface IOrange {
-  id: string;
-  phrase: string;
-  translation: string;
-  correctCount: number;
-  incorrectCount: number;
-  createTime: number;
-  lastTrainingTime: number;
-}
+import { IOrange } from '@/common/db';
 
 export default function Orange(props: {
-  index: number | string,
   orange: IOrange,
 }) {
   const router = useRouter();
@@ -27,7 +17,7 @@ export default function Orange(props: {
   };
 
   const handleDoubleClick = () => {
-    router.push(`/phrase/1234`);
+    router.push(`/phrase/${props.orange.id}`);
   };
 
   return (
@@ -45,7 +35,7 @@ export default function Orange(props: {
         }
       }}>
       <div className="flex justify-between items-center ">
-        <span className="text-2xl font-bold leading-7">{props.index}.</span>
+        <span className="text-2xl font-bold leading-7">{props.orange.id}.</span>
         <span>
           <span className="bg-green-400 px-2 py-[0.1rem] rounded-tl-sm rounded-bl-sm">{props.orange.correctCount}</span>
           <span className="bg-red-400 px-2 py-[0.1rem] rounded-tr-sm rounded-br-sm">{props.orange.incorrectCount}</span>
