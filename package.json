@@ -1,6 +1,7 @@
 {
   "name": "reverse-orange",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -17,6 +18,8 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@swc/core": "^1.9.3",
+    "@swc/jest": "^0.2.37",
     "@types/jest": "^29.5.14",
     "@types/node": "^20",
     "@types/react": "^18",
