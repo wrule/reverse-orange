@@ -1,13 +1,13 @@
 'use client';
 
-import { getOrange, setOrange } from '@/common/db';
+import { getOrange } from '@/common/db';
 import { useEffect } from 'react';
 
 export default function Phrase() {
 
   const test = async () => {
-    console.log(await setOrange('1', { a: 123 } as any));
-    console.log(await getOrange('12'));
+    // console.log(await setOrange('1', { a: 123 } as any));
+    // console.log(await getOrange('12'));
   };
 
   useEffect(() => {
