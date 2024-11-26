@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { addOrange, getAllOranges, getOrange, IOrange, updateOrange } from '@/common/db';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 export default function Phrase() {
   const { id } = useParams();
+  const router = useRouter();
   const [orange, setOrange] = useState<IOrange>({ } as IOrange);
 
   const fetchOrange = async () => {
@@ -25,11 +26,10 @@ export default function Phrase() {
           translation: orange.translation,
         });
       }
-      const list = await getAllOranges();
-      console.log(list);
     } catch (error) {
       console.error(error);
     }
+    router.push('/');
   };
 
   useEffect(() => {
