@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { addOrange, getAllOranges, getOrange, IOrange, updateOrange } from '@/common/db';
 import { useParams, useRouter } from 'next/navigation';
+import { addOrange, getOrange, IOrange, updateOrange } from '@/common/db';
 
 export default function Phrase() {
   const { id } = useParams();
