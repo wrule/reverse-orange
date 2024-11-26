@@ -6,8 +6,6 @@ import { useParams } from 'next/navigation';
 
 export default function Phrase() {
   const { id } = useParams();
-  const [phrase, setPhrase] = useState<string>('');
-  const [translation, setTranslation] = useState<string>('');
   const [orange, setOrange] = useState<IOrange>({ } as IOrange);
 
   const fetchOrange = async () => {
@@ -28,16 +26,16 @@ export default function Phrase() {
       <div className="flex-1">
         <textarea
           placeholder="Please input english phrase here..."
-          value={phrase}
-          onChange={(event) => setPhrase(event.target.value)}
+          value={orange.phrase}
+          onChange={(event) => setOrange(() => ({ ...orange, phrase: event.target.value }))}
           className="text-xl w-full h-full resize-none outline-none p-4 bg-transparent"
         />
       </div>
       <div className="flex-1 border-t">
         <textarea
           placeholder="Please input translation here..."
-          value={translation}
-          onChange={(event) => setTranslation(event.target.value)}
+          value={orange.translation}
+          onChange={(event) => setOrange(() => ({ ...orange, translation: event.target.value }))}
           className="text-xl w-full h-full resize-none outline-none p-4 bg-transparent"
         />
       </div>
