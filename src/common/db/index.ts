@@ -53,13 +53,7 @@ function removeOrange(id: number) {
 }
 
 export
-async function updateOrange(id: number, orange: {
-  phrase?: string,
-  translation?: string,
-  correctCount?: number,
-  incorrectCount?: number,
-  lastTrainingTime?: number,
-}): Promise<IOrange> {
+async function updateOrange(id: number, orange: Partial<Omit<IOrange, 'id' | 'createTime'>>): Promise<IOrange> {
   const oldOrange = await getOrange(id);
   if (!oldOrange) throw new Error('target does not exist!');
   return await localForage.setItem(orangeKey(id), {
