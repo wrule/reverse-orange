@@ -6,13 +6,13 @@ import { getOrange } from '@/common/db';
 export default function Phrase() {
   return (
     <div className="h-[100dvh] flex flex-col">
-      <div className="h-1/2">
+      <div className="flex-1">
         <textarea className="w-full h-full resize-none outline-none p-4 bg-transparent" />
       </div>
-      <div className="h-1/2 border-t">
+      <div className="flex-1 border-t">
         <textarea className="w-full h-full resize-none outline-none p-4 bg-transparent" />
       </div>
-      <div className="h-16 bg-blue-500 text-white text-2xl flex items-center justify-center cursor-pointer">Save</div>
+      <div className="h-14 bg-blue-700 text-white text-2xl flex items-center justify-center cursor-pointer">Save</div>
     </div>
   );
 }
