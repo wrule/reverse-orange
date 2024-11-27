@@ -34,7 +34,9 @@ export default function Home() {
       <div>
         {
           loading ?
-          <div className="w-4 h-4 border-2 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div> :
+          <div className="w-full h-[40rem] flex items-center justify-center">
+            <div className="w-20 h-20 border-4 border-gray-200 border-t-blue-700 rounded-full animate-spin"></div>
+          </div> :
           <ul>
             {oranges.map((orange, index) => <li key={`orange-${index}`}>
               <Orange orange={orange} />
