@@ -42,8 +42,8 @@ export default function Orange({ orange }: { orange: IOrange }) {
           <span className="bg-red-400 px-2 py-[0.1rem] rounded-tr-sm rounded-br-sm">{orange.incorrectCount}</span>
         </span>
       </div>
-      <p className="text-xl font-bold indent-[2em]">{orange.phrase}</p>
-      <p className="italic text-base indent-[2.5em] mt-2">{orange.translation}</p>
+      <p className="text-xl font-bold indent-[1.8rem]">{orange.phrase}</p>
+      <p className="italic text-base indent-[1.8rem] mt-2">{orange.translation}</p>
     </div>
   );
 }
