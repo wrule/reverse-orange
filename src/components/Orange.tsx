@@ -10,7 +10,7 @@ export default function Orange(props: {
 }) {
   const router = useRouter();
   const [phrase, speak] = useSpeaker();
-  const timer = useRef<any>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleClick = () => {
     speak(props.orange.phrase);
