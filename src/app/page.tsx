@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Orange from '@/components/Orange';
 import { getAllOranges, IOrange } from '@/common/db';
+import Loading from '@/components/Loading';
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -34,9 +35,7 @@ export default function Home() {
       <div>
         {
           loading ?
-          <div className="w-full h-[40rem] flex items-center justify-center">
-            <div className="w-20 h-20 border-4 border-gray-200 border-t-blue-700 rounded-full animate-spin"></div>
-          </div> :
+          <Loading /> :
           <ul>
             {oranges.map((orange, index) => <li key={`orange-${index}`}>
               <Orange orange={orange} />
