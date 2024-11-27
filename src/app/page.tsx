@@ -1,13 +1,11 @@
 'use client';
 
-import { getAllOranges, IOrange } from '@/common/db';
-import Orange from '@/components/Orange';
-import Button from '@/components/ui/Button';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Orange from '@/components/Orange';
+import { getAllOranges, IOrange } from '@/common/db';
 
 export default function Home() {
-  const router = useRouter();
   const [oranges, setOranges] = useState<IOrange[]>([]);
 
   const fetchAllOranges = async () => {
@@ -20,17 +18,11 @@ export default function Home() {
 
   return (
     <div>
-      <div className="flex gap-2">
-        <Button>导出</Button>
-        <Button>导入</Button>
-        <button onClick={() => {
-          router.push(`/train`);
-        }}>训练</button>
-        <button onClick={() => {
-          router.push(`/phrase/add`);
-        }}>
-          新增
-        </button>
+      <div className="px-2 flex items-center gap-4 h-12">
+        <Link href="/train" className="text-2xl font-bold text-blue-700 underline">Train</Link>
+        <Link href="/phrase/add" className="text-2xl font-bold text-blue-700 underline">Add</Link>
+        <Link href="/phrase/add" className="text-2xl font-bold text-blue-700 underline">Import</Link>
+        <Link href="/phrase/add" className="text-2xl font-bold text-blue-700 underline">Export</Link>
       </div>
       <div>
         <ul>
