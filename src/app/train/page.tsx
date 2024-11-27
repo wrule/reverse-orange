@@ -1,6 +1,11 @@
+'use client';
+
+import Question from '@/components/Question';
 
 export default function Train() {
   return (
-    <div>训练</div>
+    <div>
+      <Question />
+    </div>
   );
 }
