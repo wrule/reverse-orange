@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { addOrange, getOrange, IOrange, updateOrange } from '@/common/db';
 
@@ -9,12 +9,12 @@ export default function Phrase() {
   const router = useRouter();
   const [orange, setOrange] = useState<IOrange>({ } as IOrange);
 
-  const fetchOrange = async () => {
+  const fetchOrange = useCallback(async () => {
     const orange = await getOrange(Number(id));
     if (orange) {
       setOrange(orange);
     }
-  };
+  }, [id]);
 
   const handleSave = async () => {
     try {
@@ -36,7 +36,7 @@ export default function Phrase() {
     if (id !== 'add') {
       fetchOrange();
     }
-  }, []);
+  }, [id, fetchOrange]);
 
   return (
     <div className="h-[100dvh] flex flex-col">
