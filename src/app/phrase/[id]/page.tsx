@@ -3,17 +3,25 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { addOrange, getOrange, IOrange, updateOrange } from '@/common/db';
+import Loading from '@/components/Loading';
 
 export default function Phrase() {
   const { id } = useParams();
   const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(true);
   const [orange, setOrange] = useState<IOrange>({ } as IOrange);
 
   const fetchOrange = useCallback(async () => {
-    const orange = await getOrange(Number(id));
-    if (orange) {
-      setOrange(orange);
+    setLoading(true);
+    try {
+      const orange = await getOrange(Number(id));
+      if (orange) {
+        setOrange(orange);
+      }
+    } catch (error) {
+      console.error(error);
     }
+    setLoading(false);
   }, [id]);
 
   const handleSave = async () => {
@@ -38,7 +46,7 @@ export default function Phrase() {
     }
   }, [id, fetchOrange]);
 
-  return (
+  return loading ? <Loading /> : (
     <div className="h-[100dvh] flex flex-col">
       <div className="flex-1">
         <textarea
