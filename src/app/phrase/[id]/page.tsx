@@ -44,6 +44,8 @@ export default function Phrase() {
   useEffect(() => {
     if (id !== 'add') {
       fetchOrange();
+    } else {
+      setLoading(false);
     }
   }, [id, fetchOrange]);
 
