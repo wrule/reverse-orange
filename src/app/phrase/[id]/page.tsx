@@ -25,6 +25,7 @@ export default function Phrase() {
   }, [id]);
 
   const handleSave = async () => {
+    if (!orange.phrase.trim() || !orange.translation.trim()) return;
     try {
       if (id === 'add') {
         await addOrange(orange);
