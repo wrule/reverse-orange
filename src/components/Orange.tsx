@@ -10,7 +10,7 @@ export default function Orange(props: {
 }) {
   const router = useRouter();
   const [phrase, speak] = useSpeaker();
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const timer = useRef<number | null>(null);
 
   const handleClick = () => {
     speak(props.orange.phrase);
@@ -20,20 +20,23 @@ export default function Orange(props: {
     router.push(`/phrase/${props.orange.id}`);
   };
 
+  const handleUserClick = () => {
+    clearTimeout(timer.current as number);
+    if (timer.current) {
+      timer.current = null;
+      handleDoubleClick();
+    } else {
+      timer.current = setTimeout(() => {
+        timer.current = null;
+        handleClick();
+      }, 250) as unknown as number;
+    }
+  };
+
   return (
     <div
       className={`w-full min-h-8 px-2 py-2 border-t transition-colors duration-300 ${phrase === props.orange.phrase ? 'bg-blue-500' : ''}`}
-      onClick={() => {
-        if (timer.current) {
-          clearTimeout(timer.current);
-          timer.current = null;
-          handleDoubleClick();
-        } else {
-          timer.current = setTimeout(() => {
-            handleClick();
-          }, 250);
-        }
-      }}>
+      onClick={() => handleUserClick()}>
       <div className="flex justify-between items-center ">
         <span className="text-2xl font-bold leading-7">{props.orange.id}.</span>
         <span>
